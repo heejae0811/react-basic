@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<body>
+<div id="root"></div>
+</body>
+
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+  // 컴포넌트로 사용할 요소는 대문자로 시작해야 한다.
+  // props는 object이다.
+  function Btn({text, big, onClick}){
+    return (
+      <button
+        style={{marginRight: "10px", backgroundColor: "orange", border: "none", fontSize: big ? 22 : 12}}
+        onClick={onClick}>
+        {text}
+      </button>
+    )
+  }
+
+  function App(){
+    const [value, setValue] = React.useState('Save')
+    const changeValue = () => setValue('Revert')
+
+    return (
+      <div>
+        <Btn text={value} big={true} onClick={changeValue}/>
+        <Btn text="Cancle" big={false}/>
+      </div>
+    )
+  }
+
+  const root = document.getElementById('root')
+  ReactDOM.render(<App/>, root)
+</script>
+</html>
